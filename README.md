@@ -33,10 +33,10 @@ current scope of this project.
 * [ ] Make some testing
 * [ ] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
 
-[1]: http://img.shields.io/travis/cyChop/crontab4j/master.svg
-[2]: https://travis-ci.org/cyChop/crontab4j
-[3]: http://img.shields.io/coveralls/cyChop/crontab4j/master.svg
-[4]: https://coveralls.io/r/cyChop/crontab4j?branch=master
+[1]: http://img.shields.io/travis/cyChop/js-anagram/master.svg
+[2]: https://travis-ci.org/cyChop/js-anagram
+[3]: http://img.shields.io/coveralls/cyChop/js-anagram/master.svg
+[4]: https://coveralls.io/r/cyChop/js-anagram?branch=master
 [5]: https://img.shields.io/badge/license-MIT-blue.svg
 [6]: http://opensource.org/licenses/MIT
 
