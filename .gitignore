@@ -1,2 +1,5 @@
 # Cloud9 settings
 /.c9
+
+# Compiled results
+/build

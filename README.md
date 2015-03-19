@@ -29,16 +29,19 @@ current scope of this project.
 ## Roadmap
 
 * [ ] Get started with Grunt
+  * [x] Basics
+  * [ ] JSHint configuration
 * [ ] Implement the JavaScript functions
-* [ ] Make some testing
+  * [ ] Implementation
+  * [ ] Testing
 * [ ] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
 
 [1]: http://img.shields.io/travis/cyChop/js-anagram/master.svg
 [2]: https://travis-ci.org/cyChop/js-anagram
 [3]: http://img.shields.io/coveralls/cyChop/js-anagram/master.svg
 [4]: https://coveralls.io/r/cyChop/js-anagram?branch=master
-[5]: https://img.shields.io/badge/license-MIT-blue.svg
-[6]: http://opensource.org/licenses/MIT
+[5]: https://img.shields.io/badge/license-ISC-blue.svg
+[6]: http://www.isc.org/downloads/software-support-policy/isc-license/
 
 <!---
 [7]: https://img.shields.io/badge/Go_and_play-%E2%96%BA-brightgreen.svg

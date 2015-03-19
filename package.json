@@ -1,0 +1,24 @@
+{
+  "name": "js-anagram",
+  "version": "0.1.0",
+  "description": "A utility for searching anagrams",
+  "main": "anagram.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cyChop/js-anagram.git"
+  },
+  "keywords": [
+    "anagram"
+  ],
+  "author": "Cyrille Chopelet (http://keyboardplaying.org)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyChop/js-anagram/issues"
+  },
+  "homepage": "https://github.com/cyChop/js-anagram",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "^0.8.0"
+  }
+}
