@@ -28,10 +28,10 @@ current scope of this project.
 
 ## Roadmap
 
-* [] Get started with Grunt
-* [] Implement the JavaScript functions
-* [] Make some testing
-* [] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
+* [ ] Get started with Grunt
+* [ ] Implement the JavaScript functions
+* [ ] Make some testing
+* [ ] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
 
 [1]: http://img.shields.io/travis/cyChop/crontab4j/master.svg
 [2]: https://travis-ci.org/cyChop/crontab4j
