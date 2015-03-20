@@ -3,6 +3,16 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
+    jshint: {
+      options: {
+        jshintrc: 'src/.jshintrc'
+      },
+      build: {
+        src: 'src/*.js'
+      }
+    },
+
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> by <%= pkg.author %> (<%= grunt.template.today("yyyy-mm-dd") %>) */\n'
@@ -14,10 +24,10 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load the plugin that provides the "uglify" task.
+  // Load the plugins
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
-
+  grunt.registerTask('default', ['jshint', 'uglify']);
 };
