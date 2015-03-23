@@ -1,4 +1,8 @@
-var hello = function() {
-    // some comment which Uglify should remove
-    console.log('Hello, world!');
-}
+(function(anagram) {
+    'use strict';
+
+    anagram.hello = function() {
+        // do something
+        return 'Hello';
+    };
+})(window.anagram = window.anagram || {});

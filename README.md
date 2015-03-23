@@ -28,12 +28,15 @@ current scope of this project.
 
 ## Roadmap
 
-* [ ] Get started with Grunt
+* [x] Get started with Grunt
   * [x] Basics
-  * [ ] JSHint configuration
+  * [x] JSHint configuration
 * [ ] Implement the JavaScript functions
   * [ ] Implementation
   * [ ] Testing
+* [ ] Continuous integration
+  * [ ] Travis
+  * [ ] Coveralls
 * [ ] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
 
 [1]: http://img.shields.io/travis/cyChop/js-anagram/master.svg
