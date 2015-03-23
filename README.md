@@ -30,7 +30,8 @@ current scope of this project.
 
 * [x] Get started with Grunt
   * [x] Basics
-  * [x] JSHint configuration
+  * [x] JSHint
+  * [ ] QUnit
 * [ ] Implement the JavaScript functions
   * [ ] Implementation
   * [ ] Testing

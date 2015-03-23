@@ -5,21 +5,25 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      options: {
-        jshintrc: 'src/.jshintrc'
+      grunt: {
+        // Check Gruntfile with JSHint defaults
+        src: 'Gruntfile.js'
       },
-      build: {
-        src: 'src/*.js'
+      core: {
+        src: 'src/*.js',
+        options: {
+          jshintrc: 'src/.jshintrc'
+        }
       }
     },
 
     uglify: {
       options: {
-        banner: '/*!\n'
-              + ' * <%= pkg.name %> v<%= pkg.version %>\n'
-              + ' * by <%= pkg.author %>\n'
-              + ' * Licensed under <%= pkg.license %>\n'
-              + ' */\n'
+        banner: '/*!\n' +
+                ' * <%= pkg.name %> v<%= pkg.version %>\n' +
+                ' * by <%= pkg.author %>\n' +
+                ' * Licensed under <%= pkg.license %>\n' +
+                ' */\n'
       },
       build: {
         src: 'src/<%= pkg.name %>.js',
@@ -33,5 +37,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['jshint:grunt', 'jshint:core', 'uglify']);
 };
