@@ -1,7 +1,10 @@
 # js-anagram
 
+<!---
 [![Build Status][1]][2]
 [![Coverage Status][3]][4]
+--->
+
 [![License][5]][6]
 
 <!---
@@ -33,17 +36,21 @@ current scope of this project.
   * [x] JSHint
   * [x] QUnit
 * [ ] Implement the JavaScript functions
-  * [ ] Implementation
-  * [ ] Testing
-* [ ] Continuous integration
-  * [ ] Travis
-  * [ ] Coveralls
+  * [ ] Implementation and testing
+  * [ ] Documentation
+* [ ] ~~Continuous integration~~ (this is a one-shot project, forget the CI)
+  * [ ] ~~Travis~~
+  * [ ] ~~Coveralls~~
+  * [ ] Clean what was begun for CI
 * [ ] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
 
+<!---
 [1]: http://img.shields.io/travis/cyChop/js-anagram/master.svg
 [2]: https://travis-ci.org/cyChop/js-anagram
 [3]: http://img.shields.io/coveralls/cyChop/js-anagram/master.svg
 [4]: https://coveralls.io/r/cyChop/js-anagram?branch=master
+--->
+
 [5]: https://img.shields.io/badge/license-ISC-blue.svg
 [6]: http://www.isc.org/downloads/software-support-policy/isc-license/
 

@@ -49,5 +49,5 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'qunit', 'uglify']);
-  grunt.registerTask('control', ['jshint:core', 'qunit']);
+  grunt.registerTask('check', ['jshint:core', 'qunit']);
 };
