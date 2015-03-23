@@ -15,11 +15,15 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> by <%= pkg.author %> (<%= grunt.template.today("yyyy-mm-dd") %>) */\n'
+        banner: '/*!\n'
+              + ' * <%= pkg.name %> v<%= pkg.version %>\n'
+              + ' * by <%= pkg.author %>\n'
+              + ' * Licensed under <%= pkg.license %>\n'
+              + ' */\n'
       },
       build: {
         src: 'src/<%= pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
+        dest: 'target/<%= pkg.name %>.min.js'
       }
     }
   });
