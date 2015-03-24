@@ -1,11 +1,6 @@
 (function(anagram) {
     'use strict';
 
-    anagram.hello = function() {
-        // do something
-        return 'Hello';
-    };
-
     anagram.getAvailable = function(str, strip) {
         var result;
 
