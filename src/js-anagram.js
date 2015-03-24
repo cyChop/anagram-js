@@ -1,24 +1,43 @@
 (function(anagram) {
     'use strict';
 
-    anagram.getAvailable = function(str, strip) {
-        var result;
+    anagram.Checker = function(stripDiacritics, source) {
+        this.stripDiacritics = typeof stripDiacritics === 'undefined' || stripDiacritics;
+        this.setSource(source);
+    };
+
+    anagram.Checker.prototype.setSource = function(source) {
+        if (!this.source || source !== this.source.str) {
+            this.source = parse(source, this.stripDiacritics);
+        }
+        return this;
+    };
+
+    anagram.Checker.prototype.getSource = function() {
+        return this.source.str;
+    };
+
+    anagram.Checker.prototype.getAvailableCharsMap = function() {
+        return this.source.map;
+    };
+
+    function parse(str, strip) {
+        var result = { str: str };
 
         if (str) {
-            if (typeof strip === 'undefined' || strip) {
-                result = map(stripDiacritics(str));
+            if (strip) {
+                result.map = map(stripDiacritics(str));
             } else {
-                result = map(str);
+                result.map = map(str);
             }
         } else {
-            result = {};
+            result.map = {};
         }
 
         return result;
-    };
+    }
 
     function map(str) {
-        // FIXME build regex according to diacritic map
         var source = str.toLowerCase().replace(new RegExp(disallowedCharacters, 'g'), ''),
             length = source.length,
             result = {};
