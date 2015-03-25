@@ -1,7 +1,7 @@
-(function(anagram) {
+(function(exports) {
     'use strict';
 
-    anagram.getAvailable = function(str, strip) {
+    exports.getAvailableCharMap = function(str, strip) {
         var result;
 
         if (str) {
@@ -18,7 +18,6 @@
     };
 
     function map(str) {
-        // FIXME build regex according to diacritic map
         var source = str.toLowerCase().replace(new RegExp(disallowedCharacters, 'g'), ''),
             length = source.length,
             result = {};
