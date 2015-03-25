@@ -1,23 +1,23 @@
-(function(anagram) {
+(function(exports) {
     'use strict';
 
-    anagram.Checker = function(stripDiacritics, source) {
+    exports.Checker = function(stripDiacritics, source) {
         this.stripDiacritics = typeof stripDiacritics === 'undefined' || stripDiacritics;
         this.setSource(source);
     };
 
-    anagram.Checker.prototype.setSource = function(source) {
+    exports.Checker.prototype.setSource = function(source) {
         if (!this.source || source !== this.source.str) {
             this.source = parse(source, this.stripDiacritics);
         }
         return this;
     };
 
-    anagram.Checker.prototype.getSource = function() {
+    exports.Checker.prototype.getSource = function() {
         return this.source.str;
     };
 
-    anagram.Checker.prototype.getAvailableCharsMap = function() {
+    exports.Checker.prototype.getAvailableCharsMap = function() {
         return this.source.map;
     };
 
