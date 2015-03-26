@@ -35,8 +35,9 @@ current scope of this project.
   * [x] Basics
   * [x] JSHint
   * [x] QUnit
+  * [ ] Documentation generation
 * [ ] Implement the JavaScript functions
-  * [ ] Implementation and testing
+  * [x] Implementation and testing
   * [ ] Documentation
 * [ ] ~~Continuous integration~~ (this is a one-shot project, forget the CI)
   * [ ] ~~Travis~~

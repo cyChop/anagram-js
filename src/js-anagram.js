@@ -1,25 +1,69 @@
 (function(exports) {
     'use strict';
 
-    exports.Checker = function(stripDiacritics, source) {
-        this.stripDiacritics = typeof stripDiacritics === 'undefined' || stripDiacritics;
-        this.setSource(source);
+    /* === Checker management === */
+
+    exports.checker = function(stripDiacritics, original, proposition) {
+        return new Checker(stripDiacritics, original, proposition);
     };
 
-    exports.Checker.prototype.setSource = function(source) {
-        if (!this.source || source !== this.source.str) {
-            this.source = parse(source, this.stripDiacritics);
+    var Checker = function(stripDiacritics, original, proposition) {
+        this.stripDiacritics = typeof stripDiacritics === 'undefined' || stripDiacritics;
+        this.updateOriginal(original);
+        this.propose(proposition);
+    };
+
+    Checker.prototype.updateStripDiacritics = function(stripDiacritics) {
+        var strip = typeof stripDiacritics === 'undefined' || stripDiacritics;
+        if (this.stripDiacritics !== strip) {
+            this.stripDiacritics = strip;
+            if (this.original) {
+                this.updateOriginal(this.original.str, true);
+            }
+            if (this.proposition) {
+                this.propose(this.proposition.str, true);
+            }
         }
         return this;
     };
 
-    exports.Checker.prototype.getSource = function() {
-        return this.source.str;
+    Checker.prototype.updateOriginal = function(avail, force) {
+        if (force || !this.original || avail !== this.original.str) {
+            this.original = parse(avail, this.stripDiacritics);
+            this.diff = diff(this.original, this.proposition);
+        }
+        return this;
     };
 
-    exports.Checker.prototype.getAvailableCharsMap = function() {
-        return this.source.map;
+    Checker.prototype.propose = function(proposition, force) {
+        if (force || !this.proposition || proposition !== this.proposition.str) {
+            this.proposition = parse(proposition, this.stripDiacritics);
+            this.diff = diff(this.original, this.proposition);
+        }
+        return this;
     };
+
+    Checker.prototype.getProposition = function() {
+        return this.proposition;
+    };
+
+    Checker.prototype.getOriginal = function() {
+        return this.original.str;
+    };
+
+    Checker.prototype.getOriginalChars = function() {
+        return this.original.map;
+    };
+
+    Checker.prototype.getDiff = function() {
+        return this.diff;
+    };
+
+    Checker.prototype.isAnagram = function() {
+        return isNoDiff(this.diff);
+    };
+
+    /* === Parsing/character listing functions === */
 
     function parse(str, strip) {
         var result = { str: str };
@@ -52,7 +96,51 @@
         return result;
     }
 
-    /* Diacritics removal; source at http://stackoverflow.com/questions/990904 */
+    /* === Diff functions === */
+
+    function diff(src, prop) {
+        var mapS = src ? src.map : {},
+            mapP = prop ? prop.map : {},
+            result = {};
+
+        /* Clone the src map (should not contain any 0) */
+        for (var propS in mapS) {
+            if (mapS[propS] !== 0) {
+                result[propS] = mapS[propS];
+            }
+        }
+
+        /* Remove what was used in the proposition */
+        for (var propP in mapP) {
+            if (mapP.hasOwnProperty(propP)) {
+                if (result.hasOwnProperty(propP)) {
+                    result[propP] -= mapP[propP];
+                } else {
+                    result[propP] = -mapP[propP];
+                }
+                // remove any property brought down to 0
+                if (result[propP] === 0) {
+                    delete result[propP];
+                }
+            }
+        }
+
+        /* That's it! */
+        return result;
+    }
+
+    function isNoDiff(diff) {
+        for (var property in diff) {
+            if (diff[property] !== 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /* === Diacritics removal === */
+    /* source at http://stackoverflow.com/questions/990904 */
     var defaultDiacriticsRemovalap = [
         {'base':'A', 'letters':'\u0041\u24B6\uFF21\u00C0\u00C1\u00C2\u1EA6\u1EA4\u1EAA\u1EA8\u00C3\u0100\u0102\u1EB0\u1EAE\u1EB4\u1EB2\u0226\u01E0\u00C4\u01DE\u1EA2\u00C5\u01FA\u01CD\u0200\u0202\u1EA0\u1EAC\u1EB6\u1E00\u0104\u023A\u2C6F'},
         {'base':'AA','letters':'\uA732'},
