@@ -35,9 +35,10 @@ current scope of this project.
   * [x] Basics
   * [x] JSHint
   * [x] QUnit
-  * [ ] Documentation generation
+  * [x] jsdoc
 * [ ] Implement the JavaScript functions
   * [x] Implementation and testing
+  * [ ] Make checker members private
   * [ ] Documentation
 * [ ] ~~Continuous integration~~ (this is a one-shot project, forget the CI)
   * [ ] ~~Travis~~
@@ -52,8 +53,8 @@ current scope of this project.
 [4]: https://coveralls.io/r/cyChop/js-anagram?branch=master
 --->
 
-[5]: https://img.shields.io/badge/license-ISC-blue.svg
-[6]: http://www.isc.org/downloads/software-support-policy/isc-license/
+[5]: https://img.shields.io/badge/license-MIT-blue.svg
+[6]: http://opensource.org/licenses/MIT
 
 <!---
 [7]: https://img.shields.io/badge/Go_and_play-%E2%96%BA-brightgreen.svg
