@@ -1,65 +1,169 @@
+/** @module anagram */
 (function(exports) {
     'use strict';
 
     /* === Checker management === */
 
+    /**
+     * Proxy function to create an anagram checker.
+     *
+     * @param {boolean} stripDiacritics - <code>true</code> if diacritics should be removed,
+     *         <code>false</code> otherwise (default = <code>true</code>).
+     * @param {string} original - The original string.
+     * @param {string} proposition - The anagram proposition.
+     * @returns {Checker} A checker
+     * @see {@link Checker}
+     */
     exports.checker = function(stripDiacritics, original, proposition) {
-        return new Checker(stripDiacritics, original, proposition);
+        return new exports.Checker(stripDiacritics, original, proposition);
     };
 
-    var Checker = function(stripDiacritics, original, proposition) {
+    /**
+     * Creates a new instance.
+     * @class
+     * @classdesc The checker is a utility to easily compare a source string and a proposed anagram.
+     * <p/>
+     * It comes with utilities to determine what characters have been used or not, and which were
+     * not part of the original source.
+     * <p/>
+     * Non-letter characters are ignored, diacritics and ligatures can be removed to keep their
+     * latin equivalent, or be considered as is.
+     * <p/>
+     * This checker is <strong>not</strong> case-sensitive.
+     *
+     * @param {boolean} stripDiacritics - <code>true</code> if diacritics should be removed,
+     *         <code>false</code> otherwise (default = <code>true</code>).
+     * @param {string} original - The original string.
+     * @param {string} proposition - An anagram proposition.
+     */
+    exports.Checker = function(stripDiacritics, original, proposition) {
         this.stripDiacritics = typeof stripDiacritics === 'undefined' || stripDiacritics;
         this.updateOriginal(original);
         this.propose(proposition);
     };
 
-    Checker.prototype.updateStripDiacritics = function(stripDiacritics) {
+    /**
+     * Changes the diacritics behavior and updates the state accordingly.
+     * <p/>
+     * This means the available characters and diff are recomputed immediately.
+     *
+     * @param {boolean} stripDiacritics - <code>true</code> if diacritics should be removed,
+     *         <code>false</code> otherwise (default = <code>true</code>).
+     * @returns {Checker} The current instance
+     */
+    exports.Checker.prototype.updateStripDiacritics = function(stripDiacritics) {
         var strip = typeof stripDiacritics === 'undefined' || stripDiacritics;
         if (this.stripDiacritics !== strip) {
             this.stripDiacritics = strip;
+            var recomputeDiff = false;
             if (this.original) {
-                this.updateOriginal(this.original.str, true);
+                this.original = parse(this.original.str, strip);
+                recomputeDiff = true;
             }
             if (this.proposition) {
-                this.propose(this.proposition.str, true);
+                this.proposition = parse(this.proposition.str, strip);
+                recomputeDiff = true;
+            }
+            if (recomputeDiff) {
+                this.diff = diff(this.original, this.proposition);
             }
         }
         return this;
     };
 
-    Checker.prototype.updateOriginal = function(avail, force) {
-        if (force || !this.original || avail !== this.original.str) {
-            this.original = parse(avail, this.stripDiacritics);
+    /**
+     * Changes the original string and updates the state accordingly.
+     * <p/>
+     * This means the available characters and diff are recomputed immediately.
+     *
+     * @param {string} original - The original string.
+     * @returns {Checker} The current instance
+     */
+    exports.Checker.prototype.updateOriginal = function(original) {
+        if (!this.original || original !== this.original.str) {
+            this.original = parse(original, this.stripDiacritics);
             this.diff = diff(this.original, this.proposition);
         }
         return this;
     };
 
-    Checker.prototype.propose = function(proposition, force) {
-        if (force || !this.proposition || proposition !== this.proposition.str) {
+    /**
+     * Registers a string as a proposition for an anagram of the original string.
+     * <p/>
+     * The diff is immediately recomputed.
+     *
+     * @param {string} proposition - The anagram proposition.
+     * @returns {Checker} The current instance
+     */
+    exports.Checker.prototype.propose = function(proposition) {
+        if (!this.proposition || proposition !== this.proposition.str) {
             this.proposition = parse(proposition, this.stripDiacritics);
             this.diff = diff(this.original, this.proposition);
         }
         return this;
     };
 
-    Checker.prototype.getProposition = function() {
-        return this.proposition;
+    /**
+     * Returns the current proposition for an anagram.
+     *
+     * @returns {string} The proposition
+     */
+    exports.Checker.prototype.getProposition = function() {
+        return this.proposition.str;
     };
 
-    Checker.prototype.getOriginal = function() {
+    /**
+     * Returns the original string this checker checks anagrams for.
+     *
+     * @returns {string} The original string
+     */
+    exports.Checker.prototype.getOriginal = function() {
         return this.original.str;
     };
 
-    Checker.prototype.getOriginalChars = function() {
+    /**
+     * Returns an object containing the characters available for an anagram from the original
+     * string.
+     * <p/>
+     * The result has a property for each character, and the corresponding value is the cardinality
+     * of this character in the original string.
+     * <p/>
+     * If the diacritics stripping is active, this object will contain only latin letters.
+     *
+     * @returns {Object} An object containing the characters as properties and their cardinality as
+     *         values
+     */
+    exports.Checker.prototype.getOriginalChars = function() {
         return this.original.map;
     };
 
-    Checker.prototype.getDiff = function() {
+    /**
+     * Returns an object containing the characters available for an anagram from the original
+     * string after having removed those used in the proposition.
+     * <p/>
+     * The result has a property for each character, and the corresponding value is the cardinality
+     * of this character in the original string. If more instances of a character were used than
+     * available in the original string, they will have a negative cardinality in the diff object.
+     * <p/>
+     * If the diacritics stripping is active, this object will contain only latin letters.
+     *
+     * @returns {Object} An object containing the characters as properties and their cardinality as
+     *         values
+     */
+    exports.Checker.prototype.getDiff = function() {
         return this.diff;
     };
 
-    Checker.prototype.isAnagram = function() {
+    /**
+     * Checks whether the proposition is an anagram of the original string.
+     * <p/>
+     * If the diacritics stripping is inactive, the anagram must use the same diacritics as the
+     * original string.
+     *
+     * @returns {boolean} <code>true</code> if the current proposition is an anagram of the original
+     *         string, <code>false</code> otherwise
+     */
+    exports.Checker.prototype.isAnagram = function() {
         return isNoDiff(this.diff);
     };
 
@@ -112,7 +216,7 @@
 
         /* Remove what was used in the proposition */
         for (var propP in mapP) {
-            if (mapP.hasOwnProperty(propP)) {
+            if (mapP[propP] !== 0) {
                 if (result.hasOwnProperty(propP)) {
                     result[propP] -= mapP[propP];
                 } else {
@@ -243,8 +347,8 @@
 
     // "what?" version ... http://jsperf.com/diacritics/12
     function stripDiacritics(str) {
-        return str.replace(/[^\u0000-\u007E]/g, function(a){
+        return str ? str.replace(/[^\u0000-\u007E]/g, function(a){
            return diacriticsMap[a] || a;
-        });
+        }) : str;
     }
 })(window.anagram = window.anagram || {});

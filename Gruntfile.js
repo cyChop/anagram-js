@@ -27,6 +27,13 @@ module.exports = function(grunt) {
       files: ['test/*.html']
     },
 
+    jsdoc: {
+        core: {
+            src: 'src/*.js',
+            dest: 'doc'
+        }
+    },
+
     uglify: {
       options: {
         banner: '/*!\n' +
@@ -45,9 +52,10 @@ module.exports = function(grunt) {
   // Load the plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'qunit', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'qunit', 'jsdoc', 'uglify']);
   grunt.registerTask('check', ['jshint:core', 'qunit']);
 };

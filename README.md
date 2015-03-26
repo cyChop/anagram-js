@@ -39,7 +39,7 @@ current scope of this project.
 * [ ] Implement the JavaScript functions
   * [x] Implementation and testing
   * [ ] Make checker members private
-  * [ ] Documentation
+  * [x] Documentation
 * [ ] ~~Continuous integration~~ (this is a one-shot project, forget the CI)
   * [ ] ~~Travis~~
   * [ ] ~~Coveralls~~
