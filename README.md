@@ -31,20 +31,20 @@ current scope of this project.
 
 ## Roadmap
 
+### Version 0.1.0
+
 * [x] Get started with Grunt
-  * [x] Basics
-  * [x] JSHint
-  * [x] QUnit
-  * [x] jsdoc
-* [ ] Implement the JavaScript functions
+* [x] Implement the JavaScript functions
   * [x] Implementation and testing
-  * [ ] Make checker members private
   * [x] Documentation
-* [ ] ~~Continuous integration~~ (this is a one-shot project, forget the CI)
-  * [ ] ~~Travis~~
-  * [ ] ~~Coveralls~~
-  * [ ] Clean what was begun for CI
+* [x] ~~Continuous integration~~ (this is a one-shot project, forget the CI)
+  * [x] Clean what was begun for CI
 * [ ] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
+
+### Enhancements
+
+* [ ] Make checker members private (manipulation of the attributes outside the class could cause
+bugs which are willingly uncontrolled now for optimization)
 
 <!---
 [1]: http://img.shields.io/travis/cyChop/js-anagram/master.svg
