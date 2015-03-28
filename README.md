@@ -45,6 +45,7 @@ current scope of this project.
 
 * [ ] Make checker members private (manipulation of the attributes outside the class could cause
 bugs which are willingly uncontrolled now for optimization)
+* [ ] Move testing to nodeunit
 
 <!---
 [1]: http://img.shields.io/travis/cyChop/js-anagram/master.svg

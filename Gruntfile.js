@@ -38,7 +38,7 @@ module.exports = function(grunt) {
       options: {
         banner: '/*!\n' +
                 ' * <%= pkg.name %> v<%= pkg.version %>\n' +
-                ' * by <%= pkg.author %>\n' +
+                ' * by <%= pkg.author.name %> (<%= pkg.author.url %>)\n' +
                 ' * Licensed under <%= pkg.license %>\n' +
                 ' */\n'
       },

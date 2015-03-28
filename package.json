@@ -10,7 +10,11 @@
   "keywords": [
     "anagram"
   ],
-  "author": "Cyrille Chopelet (http://keyboardplaying.org)",
+  "author": {
+    "name": "Cyrille Chopelet",
+    "email": "cyrille.chopelet@mines-nancy.org",
+    "url": "http://keyboardplaying.org"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/cyChop/js-anagram/issues"
