@@ -20,9 +20,7 @@
     "url": "https://github.com/cyChop/js-anagram/issues"
   },
   "homepage": "https://github.com/cyChop/js-anagram",
-  "scripts": {
-    "test": "grunt"
-  },
+  "private": true,
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-contrib-jshint": "0.11.1",

@@ -43,8 +43,8 @@ module.exports = function(grunt) {
                 ' */\n'
       },
       build: {
-        src: 'src/<%= pkg.name %>.js',
-        dest: 'target/<%= pkg.name %>.min.js'
+        src: 'src/anagram.js',
+        dest: 'target/anagram.min.js'
       }
     }
   });
