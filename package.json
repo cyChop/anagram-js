@@ -1,5 +1,5 @@
 {
-  "name": "js-anagram",
+  "name": "js-anagram-demo",
   "version": "0.1.0",
   "description": "A utility for searching anagrams",
   "main": "anagram.js",
