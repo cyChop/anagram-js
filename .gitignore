@@ -1,6 +1,10 @@
 # Cloud9 settings
 /.c9
 
+# Avoid versioning Node-related files
+/node_modules
+/npm*.log
+
 # Compiled results
 /doc
 /target
