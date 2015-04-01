@@ -1,5 +1,92 @@
 <!DOCTYPE html>
 <html>
-    <head>Coming soon</head>
-    <body>Coming soon...</body>
+    <head>
+        <title>Anagram-js demo</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <nav class="navbar navbar-static-top navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Anagram-js</a>
+                </div>
+
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Example</a></li>
+                        <li><a href="doc/">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label for="inputOriginal">Original phrase</label>
+                    <input type="text" class="form-control" id="inputOriginal" placeholder="Set your original phrase" />
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" id="stripDiacritics" checked /> Strip diacritics
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Available characters</label>
+                    <div id="availableChars">
+                    </div>
+                    <button class="btn btn-default" id="noChar" disabled="disabled">No available character</button>
+                </div>
+                <div class="form-group">
+                    <label for="inputProposal">Anagram proposition</label>
+                    <input type="text" class="form-control" id="inputProposal" placeholder="Propose an anagram for you original" />
+                </div>
+            </form>
+        </div>
+
+        <!-- Some sources from CDN to keep things simple -->
+        <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+        <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+        <script src="src/anagram.js"></script>
+        <!--<script src="target/anagram.min.js"></script>-->
+        <script>
+            var c;
+            $(document).ready(function() {
+                c = anagram.checker($('#stripDiacritics').prop('checked'));
+
+                $('#inputOriginal').keyup(function() {
+                    c.updateOriginal($('#inputOriginal').val());
+                    updateAvailables(c);
+                });
+                $('#inputProposal').keyup(function() {
+                    c.propose($('#inputProposal').val());
+                    updateAvailables(c);
+                });
+                $('#stripDiacritics').change(function() {
+                    c.updateStripDiacritics($('#stripDiacritics').prop('checked'));
+                    updateAvailables(c);
+                });
+            });
+
+                function updateAvailables(c) {
+                    var map = c.getDiff();
+                    if (!map || map === {}) {
+                        $('#availableChars').empty();
+                        $('#noChar').show();
+                    } else {
+                        $('#noChar').hide();
+                        $('#availableChars').empty();
+                        for (var char in map) {
+                            var count = map[char];
+                            if (count !== 0) {
+                                $('#availableChars').append(
+                                    $('<button />', { text: char, class: 'btn btn-default', tabindex: -1 }).append(' ').append(
+                                        $('<span />', { text: count, class: count < 0 ? 'label label-danger' : 'label label-primary' })
+                                    )
+                                );
+                            }
+                        }
+                    }
+                }
+        </script>
+    </body>
 </html>

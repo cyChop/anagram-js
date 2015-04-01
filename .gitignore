@@ -6,5 +6,5 @@
 /npm*.log
 
 # Compiled results
-/doc
+# /doc
 /target
