@@ -40,6 +40,13 @@ current scope of this project.
 * [x] ~~Continuous integration~~ (this is a one-shot project, forget the CI)
   * [x] Clean what was begun for CI
 * [ ] Create a ``gh-pages`` branch: use the script and two inputs to make something people can use
+  * [ ] Make demo page allowing for computing anagrams
+  * [ ] Links
+    * [ ] Documentation
+    * [ ] Source
+    * [ ] Latest release
+  * [ ] Make the demo code available as a sample of how to use (tab on the demo page)
+  * [ ] Save anagrams
 
 ### Enhancements
 
