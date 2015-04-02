@@ -6,10 +6,7 @@
 --->
 
 [![License][5]][6]
-
-<!---
 [![Go and play][7]][8]
---->
 
 ## History
 
@@ -67,8 +64,5 @@ bugs which are willingly uncontrolled now for optimization)
 
 [5]: https://img.shields.io/badge/license-MIT-blue.svg
 [6]: http://opensource.org/licenses/MIT
-
-<!---
-[7]: https://img.shields.io/badge/Go_and_play-%E2%96%BA-brightgreen.svg
+[7]: https://img.shields.io/badge/Demo_and_doc-%E2%96%BA-brightgreen.svg
 [8]: http://cychop.github.io/js-anagram
---->
