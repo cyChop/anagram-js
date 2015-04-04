@@ -43,7 +43,7 @@ current scope of this project.
     * [x] Source
     * [x] Latest release
   * [ ] Make the demo code available as a sample of how to use (tab on the demo page)
-  * [ ] Save anagrams
+  * [x] Save anagrams
 
 ### Bugs
 
