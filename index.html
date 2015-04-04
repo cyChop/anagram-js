@@ -41,7 +41,10 @@
                         </div>
                         <div class="form-group">
                             <label for="inputProposal" class="control-label">Anagram proposition</label>
-                            <input type="text" class="form-control" id="inputProposal" placeholder="Propose an anagram for you original" />
+                            <!--<div class="input-group">-->
+                                <input type="text" class="form-control" id="inputProposal" placeholder="Propose an anagram for you original" />
+                                <!--<a class="input-group-addon" disabled="disabled" id="saveProposal"><i class="fa fa-save"></i></a>-->
+                            <!--</div>-->
                         </div>
                     </form>
                 </div>
@@ -108,8 +111,20 @@
                     if (prop === 0) {
                         $('#noChar').show();
                     }
-                    $('#inputProposal').parent().removeClass('has-success has-error')
-                        .addClass(c.isAnagram() ? 'has-success' : 'has-error');
+                    $('#inputProposal').closest('.form-group').removeClass('has-success has-error');
+                    if (c.isAnagram()) {
+                        setProposalOK();
+                    } else {
+                        setProposalKO();
+                    }
+                }
+
+                function setProposalOK() {
+                    $('#inputProposal').closest('.form-group').addClass('has-success');
+                }
+
+                function setProposalKO() {
+                    $('#inputProposal').closest('.form-group').addClass('has-error');
                 }
             });
         </script>
