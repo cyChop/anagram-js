@@ -41,12 +41,18 @@
                         </div>
                         <div class="form-group">
                             <label for="inputProposal" class="control-label">Anagram proposition</label>
-                            <!--<div class="input-group">-->
+                            <div class="input-group">
                                 <input type="text" class="form-control" id="inputProposal" placeholder="Propose an anagram for you original" />
-                                <!--<a class="input-group-addon" disabled="disabled" id="saveProposal"><i class="fa fa-save"></i></a>-->
-                            <!--</div>-->
+                                <span class="input-group-addon" id="saveProposal">
+                                  <i id="savingAllowed" class="fa fa-save"></i>
+                                  <i id="savingBlocked" class="fa fa-ban"></i>
+                                </span>
+                            </div>
                         </div>
                     </form>
+                    <div>
+                        <ul id="correctAnagrams"></ul>
+                    </div>
                 </div>
                 <div class="col-md-3 col-sm-12">
                     <a class="btn btn-default btn-lg btn-block" href="https://github.com/cyChop/anagram-js">
@@ -67,22 +73,35 @@
         <script src="src/anagram.js"></script>
         <!--<script src="target/anagram.min.js"></script>-->
         <script>
-            var c;
             $(document).ready(function() {
-                c = anagram.checker($('#stripDiacritics').prop('checked'));
+                var c = anagram.checker($('#stripDiacritics').prop('checked'));
 
-                $('#inputOriginal').keyup(function() {
+                var counter;
+
+                $('#inputOriginal').bind('keyup', function() {
                     c.updateOriginal($('#inputOriginal').val());
                     updateAvailables();
                 });
-                $('#inputProposal').keyup(function() {
+                $('#inputProposal').bind('keyup', function() {
                     c.propose($('#inputProposal').val());
                     updateAvailables();
                 });
-                $('#stripDiacritics').change(function() {
+                $('#stripDiacritics').bind('change', function() {
                     c.updateStripDiacritics($('#stripDiacritics').prop('checked'));
                     updateAvailables();
                 });
+
+                $('#savingAllowed').bind('click', function(event) {
+                    var id = counter++;
+                    $('#correctAnagrams').append(
+                        $('<li></li>', { id: id, html: $('#inputOriginal').val()
+                                + ' &equiv; ' + $('#inputProposal').val() }).append(
+                            $('<a></a>', { class: 'pull-right' }).append(
+                                $('<i></i>', { class: 'fa fa-remove'})
+                            ).bind('click', function(event) { $('#' + id).remove(); })
+                        )
+                    );
+                }).hide();
 
                 function updateAvailables() {
                     var map = c.getDiff();
@@ -96,7 +115,7 @@
                                 $('#availableChars').append(
                                     $('<button />', { text: char, type: 'button', class: 'btn btn-default', tabindex: -1 }).attr('data-char', char).append(' ').append(
                                         $('<span />', { text: count, class: count < 0 ? 'label label-danger' : 'label label-primary' })
-                                    ).click(function() {
+                                    ).bind('click', function() {
                                        var input = $('#inputProposal'),
                                            newVal = input.val() + $(this).attr('data-char');
                                         input.val(newVal);
@@ -112,19 +131,30 @@
                         $('#noChar').show();
                     }
                     $('#inputProposal').closest('.form-group').removeClass('has-success has-error');
-                    if (c.isAnagram()) {
-                        setProposalOK();
+                    if (c.getOriginal()) {
+                        if (c.isAnagram()) {
+                            setProposalOK();
+                        } else {
+                            setProposalKO(true);
+                        }
                     } else {
-                        setProposalKO();
+                        setProposalKO(false);
                     }
                 }
 
                 function setProposalOK() {
                     $('#inputProposal').closest('.form-group').addClass('has-success');
+                    $('#savingBlocked').hide();
+                    $('#savingAllowed').show();
+
                 }
 
-                function setProposalKO() {
-                    $('#inputProposal').closest('.form-group').addClass('has-error');
+                function setProposalKO(incorrectStyle) {
+                    if (incorrectStyle) {
+                        $('#inputProposal').closest('.form-group').addClass('has-error');
+                    }
+                    $('#savingAllowed').hide();
+                    $('#savingBlocked').show();
                 }
             });
         </script>
