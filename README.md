@@ -6,10 +6,7 @@
 --->
 
 [![License][5]][6]
-
-<!---
 [![Go and play][7]][8]
---->
 
 ## History
 
@@ -46,11 +43,11 @@ current scope of this project.
     * [x] Source
     * [x] Latest release
   * [ ] Make the demo code available as a sample of how to use (tab on the demo page)
-  * [ ] Save anagrams
+  * [x] Save anagrams
 
 ### Bugs
 
-* [ ] Diacritics stripping does not work for minified version
+* [x] Diacritics stripping does not work for minified version
 
 ### Enhancements
 
@@ -67,8 +64,5 @@ bugs which are willingly uncontrolled now for optimization)
 
 [5]: https://img.shields.io/badge/license-MIT-blue.svg
 [6]: http://opensource.org/licenses/MIT
-
-<!---
-[7]: https://img.shields.io/badge/Go_and_play-%E2%96%BA-brightgreen.svg
+[7]: https://img.shields.io/badge/Demo_and_doc-%E2%96%BA-brightgreen.svg
 [8]: http://cychop.github.io/js-anagram
---->

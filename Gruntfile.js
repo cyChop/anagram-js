@@ -28,10 +28,10 @@ module.exports = function(grunt) {
     },
 
     jsdoc: {
-        core: {
-            src: 'src/*.js',
-            dest: 'doc'
-        }
+      core: {
+        src: 'src/*.js',
+        dest: 'doc'
+      }
     },
 
     uglify: {
@@ -56,6 +56,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'qunit', 'jsdoc', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'qunit', 'jsdoc']);
   grunt.registerTask('check', ['jshint:core', 'qunit']);
 };
