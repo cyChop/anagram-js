@@ -47,7 +47,7 @@ current scope of this project.
 
 ### Bugs
 
-* [ ] Diacritics stripping does not work for minified version
+* [x] Diacritics stripping does not work for minified version
 
 ### Enhancements
 
