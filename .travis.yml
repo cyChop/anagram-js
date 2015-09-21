@@ -5,3 +5,19 @@ node_js:
 
 before_script:
   - npm install grunt-cli -g
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "YhI10FXf8n33roYFOgpufsZqR+KrGatz6AjNlpIvM28DBe7UzhwnoKX4UX95ahD7LwHUdFlrc7h8GSMfNRr25txpEC3UEbto44ahI5y6Dm6NsUKGVV2IF753YlW7aZ/Y/n+nZMSpjaujDpUamlfQSsLlL/msTthz1cYQpZ4obP8="
+
+addons:
+  coverity_scan:
+    project:
+      name: "cyChop/anagram-js"
+      description: "Build submitted via Travis CI"
+    notification_email: cyrille.chopelet@mines-nancy.org
+    build_command_prepend: ""
+    build_command:   ""
+    branch_pattern: coverity_scan
