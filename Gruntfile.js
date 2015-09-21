@@ -24,8 +24,22 @@ module.exports = function(grunt) {
     },
 
     qunit: {
-      files: ['test/*.html']
+  		options: {
+  			coverage: {
+  				src: [ "src/*.js" ],
+  				instrumentedFiles: "temp/",
+  				htmlReport: "build/report/coverage",
+  				lcovReport: "build/report/lcov",
+  				linesThresholdPct: 0
+  			}
+  		},
+  		files: ['test/*.html']
     },
+    coveralls: {
+  		main_target: {
+  			src: "build/report/lcov/lcov.info"
+  		}
+	},
 
     jsdoc: {
       core: {
@@ -44,7 +58,7 @@ module.exports = function(grunt) {
       },
       build: {
         src: 'src/anagram.js',
-        dest: 'target/anagram.min.js'
+        dest: 'build/target/anagram.min.js'
       }
     }
   });

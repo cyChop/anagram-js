@@ -7,4 +7,5 @@
 
 # Compiled results
 /doc
-/target
+/temp
+/build
