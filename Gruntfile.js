@@ -25,7 +25,6 @@ module.exports = function(grunt) {
 
     qunit: {
   		options: {
-  		  "--web-security": "no",
   			coverage: {
   				src: [ "src/*.js" ],
   				instrumentedFiles: "temp/",
