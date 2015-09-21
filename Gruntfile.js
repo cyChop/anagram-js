@@ -25,6 +25,7 @@ module.exports = function(grunt) {
 
     qunit: {
   		options: {
+  		  "--web-security": "no",
   			coverage: {
   				src: [ "src/*.js" ],
   				instrumentedFiles: "temp/",
@@ -68,6 +69,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks("grunt-qunit-istanbul");
   grunt.loadNpmTasks('grunt-coveralls');
 
   // Default task(s).

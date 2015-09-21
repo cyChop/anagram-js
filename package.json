@@ -27,7 +27,7 @@
     "grunt-contrib-qunit": "0.7.0",
     "grunt-contrib-uglify": "0.9.1",
     "grunt-jsdoc": "0.6.7",
-    "qunitjs": "1.18.0",
+    "grunt-qunit-istanbul": "0.4.2",
     "grunt-coveralls": "1.0.0"
   },
   "scripts": {
