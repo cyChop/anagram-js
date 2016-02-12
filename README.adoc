@@ -1,0 +1,55 @@
+= anagram.js
+Cyrille Chopelet <cyrille.chopelet@mines-nancy.org>
+
+// Github, Travis, Waffle/issues & license
+:github-user: cyChop
+:github-repo: anagram-js
+:github-description: A pretext for a proof-of-concept JavaScript project
+:travis-built: false
+//:waffle: {github-repo}
+:license-name: MIT
+:license-url: http://opensource.org/licenses/MIT
+// Sonar projects
+//:sonar-groupid: {pom-groupid}
+//:sonar-artifactid: {pom-artifactid}
+// The badges. Should not require any change.
+:url-shields: http://img.shields.io/
+:url-sonar: sonar.keyboardplaying.org
+// Travis
+ifeval::["{travis-built}" == "true"]
+image:{url-shields}travis/{github-user}/{github-repo}/master.svg[Build status, link="https://travis-ci.org/{github-user}/{github-repo}"]
+endif::[]
+// Sonar badges
+ifdef::sonar-groupid,sonar-artifactid[]
+image:{url-shields}sonar/http/{url-sonar}/{sonar-groupid}:{sonar-artifactid}/coverage.svg[Test coverage, link="http://{url-sonar}/drilldown/measures/?id={sonar-groupid}:{sonar-artifactid}&metric=coverage"]
+image:{url-shields}sonar/http/{url-sonar}/{sonar-groupid}:{sonar-artifactid}/tech_debt.svg[Technical debt, link="http://{url-sonar}/dashboard/index?id={sonar-groupid}:{sonar-artifactid}"]
+endif::sonar-groupid,sonar-artifactid[]
+// Issues
+ifdef::waffle[]
+image:{url-shields}github/issues-raw/{github-user}/{github-repo}.svg[Waffle, link="https://waffle.io/{github-user}/{waffle}"]
+endif::waffle[]
+ifndef::waffle[]
+image:{url-shields}github/issues-raw/{github-user}/{github-repo}.svg[Waffle, link="https://github.com/{github-user}/{github-repo}/issues"]
+endif::waffle[]
+// License
+image:{url-shields}github/license/{github-user}/{github-repo}.svg[License: {license-name}, link="{license-url}"]
+// Now, the main documentation.
+image:{url-shields}badge/Demo_and_doc-%E2%96%BA-brightgreen.svg[Go and play, link="http://cychop.github.io/anagram-js"]
+
+== History
+
+I love trying to find anagrams, but sometimes (especially with long phrases), trying to keep track
+of letters you already used and letters still available can be a pain, so I wanted to make a small
+tool to do this for me.
+
+This was also the occasion for me to try a more formal way to do some JavaScript, with automation,
+unit testing, and so on.
+
+== What it is and is not
+
+This JavaScript allows you to find which anagrams can or cannot be made using a set of letters,
+provided **you** do the search.
+
+It is **not** a script running automatically through a dictionary to find the possible
+rearrangements. You will find plenty of those already, and though it is funny, it is not in the
+current scope of this project.
