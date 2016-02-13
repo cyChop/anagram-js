@@ -24,23 +24,8 @@ module.exports = function(grunt) {
     },
 
     qunit: {
-  		options: {
-  		  "--web-security": "no",
-  			coverage: {
-  				src: [ "src/*.js" ],
-  				instrumentedFiles: "temp/",
-  				htmlReport: "build/report/coverage",
-  				lcovReport: "build/report/lcov",
-  				linesThresholdPct: 0
-  			}
-  		},
   		files: ['test/*.html']
     },
-    coveralls: {
-  		main_target: {
-  			src: "build/report/lcov/lcov.info"
-  		}
-	},
 
     jsdoc: {
       core: {
@@ -69,8 +54,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks("grunt-qunit-istanbul");
-  grunt.loadNpmTasks('grunt-coveralls');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint', 'uglify', 'qunit', 'jsdoc']);
