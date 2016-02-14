@@ -1,11 +1,11 @@
 {
-  "name": "anagram-js",
-  "version": "0.1.0",
+  "name": "anagram.js",
+  "version": "3.7.2",
   "description": "A utility for searching anagrams",
   "main": "anagram.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cyChop/js-anagram.git"
+    "url": "https://github.com/cyChop/anagram-js.git"
   },
   "keywords": [
     "anagram"
@@ -17,9 +17,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cyChop/js-anagram/issues"
+    "url": "https://github.com/cyChop/anagram-js/issues"
   },
-  "homepage": "https://github.com/cyChop/js-anagram",
+  "homepage": "https://github.com/cyChop/anagram-js",
   "private": true,
   "devDependencies": {
     "grunt": "0.4.5",
