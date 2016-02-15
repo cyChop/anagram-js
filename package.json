@@ -1,6 +1,6 @@
 {
   "name": "anagram.js",
-  "version": "3.7.2",
+  "version": "0.1.0",
   "description": "A utility for searching anagrams",
   "main": "anagram.js",
   "repository": {
