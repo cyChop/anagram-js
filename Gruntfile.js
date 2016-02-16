@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     qunit: {
   		files: ['test/*.html'],
   		options: {
-  		  phantomPath: 'node_modules/phantomjs-prebuilt/bin/phantomjs'
+  		  phantomPath: 'node_modules/phantomjs/bin/phantomjs'
   		}
     },
 

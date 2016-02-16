@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/cyChop/anagram-js/issues"
   },
-  "homepage": "https://github.com/cyChop/anagram-js",
+  "homepage": "https://cychop.github.io/anagram-js",
   "private": true,
   "devDependencies": {
     "grunt": "^0.4.5",
