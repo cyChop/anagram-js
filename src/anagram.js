@@ -342,8 +342,8 @@
         for (var j = 0; j < letters.length; j++){
             diacriticsMap[letters.charAt(j)] = defaultDiacriticsRemovalMap[i].base;
         }
-        disallowedCharacters += ']+';
     }
+    disallowedCharacters += ']+';
 
     // "what?" version ... http://jsperf.com/diacritics/12
     function stripDiacritics(str) {

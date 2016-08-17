@@ -10,21 +10,30 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       core: {
-        src: 'src/*.js',
+        src: 'src/**/*.js',
         options: {
           jshintrc: 'src/.jshintrc'
         }
       },
       test: {
-        src: 'test/unit/*.js',
+        src: 'test/**/*-spec.js',
         options: {
-          jshintrc: 'test/unit/.jshintrc'
+          jshintrc: 'test/.jshintrc'
         }
       }
     },
 
     qunit: {
   		all: ['test/*.html']
+    },
+
+    jasmine: {
+      pivotal: {
+        src: 'src/**/*.js',
+        options: {
+          specs: 'test/**/*-spec.js'
+        }
+      }
     },
 
     jsdoc: {
@@ -51,12 +60,11 @@ module.exports = function(grunt) {
 
   // Load the plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-croc-qunit');
   grunt.loadNpmTasks('grunt-jsdoc');
 
   // Default task(s).
-  //grunt.registerTask('default', ['jshint', 'uglify', 'qunit', 'jsdoc']);
-  grunt.registerTask('default', ['jshint', 'uglify', 'jsdoc']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'jsdoc']);
 };
