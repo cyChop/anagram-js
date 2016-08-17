@@ -1,11 +1,25 @@
-# Cloud9 settings
-/.c9
-
-# Avoid versioning Node-related files
-/node_modules
-/npm*.log
+# Logs
+logs
+*.log
+npm-debug.log*
 
 # Compiled results
 /doc
 /temp
 /build
+
+# Dependency directory
+node_modules
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# IntelliJ
+.idea
+*.iml
+
+# Cloud9
+/.c9/
