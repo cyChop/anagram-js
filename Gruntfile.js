@@ -24,10 +24,7 @@ module.exports = function(grunt) {
     },
 
     qunit: {
-  		files: ['test/*.html'],
-  		options: {
-  		  phantomPath: 'node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs'
-  		}
+  		all: ['test/*.html']
     },
 
     jsdoc: {
@@ -54,10 +51,12 @@ module.exports = function(grunt) {
 
   // Load the plugins
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-croc-qunit');
   grunt.loadNpmTasks('grunt-jsdoc');
 
   // Default task(s).
-  grunt.registerTask('default', ['jshint', 'uglify', 'qunit', 'jsdoc']);
+  //grunt.registerTask('default', ['jshint', 'uglify', 'qunit', 'jsdoc']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'jsdoc']);
 };
