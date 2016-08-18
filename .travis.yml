@@ -4,7 +4,7 @@ node_js:
 
 before_script:
   - npm install grunt-cli -g
-  - wget https://raw.githubusercontent.com/cyChop/dev-resources/master/sonar/sonar.config.js
+  - wget -q https://raw.githubusercontent.com/cyChop/dev-resources/master/sonar/sonar.config.js
 
 script: grunt ci
 
