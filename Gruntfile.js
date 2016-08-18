@@ -1,6 +1,6 @@
 var getSonarConfig = function () {
     var sonarConfig = require('./sonar.config.js');
-    require('underscore').defaults({
+    sonarConfig.sonar.javascript = require('underscore').defaults({
         lcov: {
             reportPath: 'bin/coverage/report-lcov/lcov.info'
         }
@@ -97,7 +97,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-croc-qunit');
     grunt.loadNpmTasks('grunt-jsdoc');
 
     grunt.loadNpmTasks('grunt-sonar-runner');
