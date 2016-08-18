@@ -1,70 +1,88 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Project configuration.
-  grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    // Project configuration.
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
 
-    jshint: {
-      grunt: {
-        // Check Gruntfile with JSHint defaults
-        src: 'Gruntfile.js'
-      },
-      core: {
-        src: 'src/**/*.js',
-        options: {
-          jshintrc: 'src/.jshintrc'
-        }
-      },
-      test: {
-        src: 'test/**/*-spec.js',
-        options: {
-          jshintrc: 'test/.jshintrc'
-        }
-      }
-    },
+        jshint: {
+            grunt: {
+                // Check Gruntfile with JSHint defaults
+                src: 'Gruntfile.js'
+            },
+            core: {
+                src: 'src/**/*.js',
+                options: {
+                    jshintrc: 'src/.jshintrc'
+                }
+            },
+            test: {
+                src: 'test/**/*-spec.js',
+                options: {
+                    jshintrc: 'test/.jshintrc'
+                }
+            }
+        },
 
-    qunit: {
-  		all: ['test/*.html']
-    },
+        qunit: {
+            all: ['test/*.html']
+        },
 
-    jasmine: {
-      pivotal: {
-        src: 'src/**/*.js',
-        options: {
-          specs: 'test/**/*-spec.js'
-        }
-      }
-    },
+        jasmine: {
+            coverage: {
+                src: 'src/**/*.js',
+                options: {
+                    specs: 'test/**/*-spec.js',
+                    template: require('grunt-template-jasmine-istanbul'),
+                    templateOptions: {
+                        coverage: 'bin/coverage/coverage.json',
+                        report: [
+                            {
+                                type: 'html',
+                                options: {
+                                    dir: 'bin/coverage/report-html'
+                                }
+                            },
+                            {
+                                type: 'lcov',
+                                options: {
+                                    dir: 'bin/coverage/report-lcov'
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
 
-    jsdoc: {
-      core: {
-        src: 'src/*.js',
-        dest: 'doc'
-      }
-    },
+        jsdoc: {
+            core: {
+                src: 'src/*.js',
+                dest: 'bin/doc'
+            }
+        },
 
-    uglify: {
-      options: {
-        banner: '/*!\n' +
+        uglify: {
+            options: {
+                banner: '/*!\n' +
                 ' * <%= pkg.name %> v<%= pkg.version %>\n' +
                 ' * by <%= pkg.author.name %> (<%= pkg.author.url %>)\n' +
                 ' * Licensed under <%= pkg.license %>\n' +
                 ' */\n'
-      },
-      build: {
-        src: 'src/anagram.js',
-        dest: 'build/target/anagram.min.js'
-      }
-    }
-  });
+            },
+            build: {
+                src: 'src/anagram.js',
+                dest: 'build/target/anagram.min.js'
+            }
+        }
+    });
 
-  // Load the plugins
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-croc-qunit');
-  grunt.loadNpmTasks('grunt-jsdoc');
+    // Load the plugins
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-croc-qunit');
+    grunt.loadNpmTasks('grunt-jsdoc');
 
-  // Default task(s).
-  grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'jsdoc']);
+    // Default task(s).
+    grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'jsdoc']);
 };
