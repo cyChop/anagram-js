@@ -73,8 +73,19 @@ module.exports = function (grunt) {
                 src: 'src/anagram.js',
                 dest: 'build/target/anagram.min.js'
             }
+        },
+
+        sonarRunner: {
+            analysis: {
+                options: require('underscore').defaults({
+                    lcov: {
+                        reportPath: 'bin/coverage/report-lcov/lcov.info'
+                    }
+                }, require('./sonar.config.js'))
+            }
         }
-    });
+    })
+    ;
 
     // Load the plugins
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -83,6 +94,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-croc-qunit');
     grunt.loadNpmTasks('grunt-jsdoc');
 
+    grunt.loadNpmTasks('grunt-sonar-runner');
+
     // Default task(s).
-    grunt.registerTask('default', ['jshint', 'uglify', 'jasmine', 'jsdoc']);
+    grunt.registerTask('default', ['jshint', 'uglify', 'jasmine']);
+    grunt.registerTask('ci', ['jshint', 'uglify', 'jasmine', 'jsdoc']);
 };

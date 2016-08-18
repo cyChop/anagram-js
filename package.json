@@ -1,5 +1,5 @@
 {
-  "name": "anagram.js",
+  "name": "anagram",
   "version": "0.1.0",
   "description": "A utility for searching anagrams",
   "main": "anagram.js",
@@ -27,9 +27,8 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
     "grunt-jsdoc": "^2.1.0",
-    "grunt-template-jasmine-istanbul": "^0.5.0"
-  },
-  "scripts": {
-    "test": "grunt"
+    "grunt-sonar-runner": "^2.4.7",
+    "grunt-template-jasmine-istanbul": "^0.5.0",
+    "underscore": "^1.8.3"
   }
 }
