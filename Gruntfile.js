@@ -1,13 +1,3 @@
-var getSonarConfig = function () {
-    var sonarConfig = require('./sonar.config.js');
-    sonarConfig.sonar.javascript = require('underscore').defaults({
-        lcov: {
-            reportPath: 'bin/coverage/report-lcov/lcov.info'
-        }
-    }, sonarConfig.sonar.javascript);
-    return sonarConfig;
-};
-
 module.exports = function (grunt) {
 
     // Project configuration.
@@ -87,7 +77,7 @@ module.exports = function (grunt) {
 
         sonarRunner: {
             analysis: {
-                options: getSonarConfig()
+                options: require('./sonar.config.js')
             }
         }
     })
