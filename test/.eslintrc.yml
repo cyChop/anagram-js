@@ -1,0 +1,5 @@
+env:
+  jasmine: true
+
+rules:
+  object-property-newline: 0          # enforce placing object properties on separate lines

@@ -4,23 +4,8 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        jshint: {
-            grunt: {
-                // Check Gruntfile with JSHint defaults
-                src: 'Gruntfile.js'
-            },
-            core: {
-                src: 'src/**/*.js',
-                options: {
-                    jshintrc: 'src/.jshintrc'
-                }
-            },
-            test: {
-                src: 'test/**/*-spec.js',
-                options: {
-                    jshintrc: 'test/.jshintrc'
-                }
-            }
+        eslint: {
+            target: ['src/**/*.js', 'test/**/*-spec.js']
         },
 
         qunit: {
@@ -84,7 +69,7 @@ module.exports = function (grunt) {
     ;
 
     // Load the plugins
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-eslint');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-jsdoc');

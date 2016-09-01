@@ -24,8 +24,8 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-contrib-jasmine": "^1.0.3",
-    "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-uglify": "^2.0.0",
+    "grunt-eslint": "^19.0.0",
     "grunt-jsdoc": "^2.1.0",
     "grunt-sonar-runner": "^2.4.7",
     "grunt-template-jasmine-istanbul": "^0.5.0",

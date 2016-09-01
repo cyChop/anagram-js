@@ -1,6 +1,8 @@
 describe('The checker', function () {
     'use strict';
 
+    var anagram = window.anagram;
+
     describe('even without diacritic stripping', function () {
         var checker;
         beforeEach(function () {
@@ -117,7 +119,7 @@ describe('The checker', function () {
 
         it('is updated when the diacritics stripping setting is changed', function () {
             checker.updateStripDiacritics(false);
-            expect(checker.getDiff()).toEqual({ é: -1, e: 1 });
+            expect(checker.getDiff()).toEqual({é: -1, e: 1});
             expect(checker.isAnagram()).toBe(false);
         });
     });
